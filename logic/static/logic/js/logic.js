@@ -117,7 +117,6 @@ $(function() {
     simplificationList.data('max-simplification-id', maxId + 1);
     // get the simplification name
     var name = $(this).data('simplification-name');
-    var prettyName = $(this).data('simplification-string');
     // create a new element
     var item = $('\
     <li class="simplification-list-item" data-applied-simplification-name="' + name + '" data-applied-simplification-id="' + maxId + '">\
@@ -127,7 +126,7 @@ $(function() {
         </button>\
         <div id="simplification-fn-qm" class="simplification-div">\
           <span class="glyphicon glyphicon-move"></span>\
-          <span class="simplification-name">' + prettyName + '</span>\
+          <span class="simplification-name">' + name + '</span>\
         </div>\
       </div>\
     </li>\
