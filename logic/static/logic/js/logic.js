@@ -121,17 +121,13 @@ $(function() {
     // create a new element
     var item = $('\
     <li class="simplification-list-item" data-applied-simplification-name="' + name + '" data-applied-simplification-id="' + maxId + '">\
-      <div class="row">\
-        <div class="col-md-10">\
-          <div id="simplification-fn-qm" class="simplification-div">\
-            <span class="glyphicon glyphicon-move"></span>\
-            <span class="simplification-name">' + prettyName + '</span>\
-          </div>\
-        </div>\
-        <div class="col-md-2">\
-          <button class="btn btn-success btn-sm simplifications-button remove-simplification-btn" data-applied-simplification-btn-id="' + maxId + '">\
-            Remove <span class="glyphicon glyphicon-minus-sign"></span>\
-          </button>\
+      <div>\
+        <button class="btn btn-success btn-sm simplification-btn remove-simplification-btn" data-applied-simplification-btn-id="' + maxId + '">\
+          Remove <span class="glyphicon glyphicon-minus-sign"></span>\
+        </button>\
+        <div id="simplification-fn-qm" class="simplification-div">\
+          <span class="glyphicon glyphicon-move"></span>\
+          <span class="simplification-name">' + prettyName + '</span>\
         </div>\
       </div>\
     </li>\

@@ -21,10 +21,16 @@ def homepage(request):
     return render(request, 'logic/homepage.html', {})
 
 
+class Simplification:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
 def demo(request):
-    print(list(simplification_ops.values()))
+    functions = []
+    for n, f in simplification_ops.items():
+        functions.append(Simplification(name=f.__name__, doc=f.__doc__, pretty=n))
     return render(request, 'logic/demo.html', {
-        'simplifications': list(simplification_ops.keys()),
+        'simplifications': functions,
     })
 
 
@@ -51,7 +57,7 @@ def translate(request):
             response_data['status'] = 'success'
             response_data['messages'] = json.dumps(errors)
         else:
-            response_data['text'] = "Enter a formula first. E.g., 'Happy(you)'"
+            response_data['text'] = "Enter a formula first. E.g., 'Happy(bob)'"
             response_data['status'] = 'default'
     except fol.FormulaParseError as e:
         response_data['text'] = str(e)

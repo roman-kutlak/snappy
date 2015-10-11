@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load simplification_extras %}
 
 {%block stylesheets %}
   <link href="{% static 'logic/css/logic.css' %}" rel="stylesheet" />
@@ -30,7 +29,7 @@
         <button id="toggle-simplifications" href="#" class="btn btn-info btn-sm" style="float: right; width: 150px;">
           Show Simplifications <span class="glyphicon glyphicon-menu-down"></span>
         </button>
-      <div style="clear: both;"></div>
+        <div style="clear: both;"></div>
       </div>
     </div>
   </div>
@@ -52,70 +51,40 @@
     <div class="row">
       <div class="col-md-7">
         <div id="simplifications-div" class="simplifications-div panel panel-default">
-        <div class="panel-heading">Available Simplifications</div>
-        <div class="panel-body">
-
-          <ul class="simplification-list">
-          {% for s in simplifications %}
-            <li class="simplification-list-item">
-            <div class="row">
-              <div class="padded-row">
-                <div class="col-md-11 with-help-popup" data-toggle="popover" title="Help" data-placement="top"
-                    data-content="{{ s|fn_doc }}">
-                <div class="simplification-div">
-                  {{ s|pretify }}
-                </div>
-              </div>
-              <div class="col-md-1">
-                  <button class="btn btn-success btn-sm simplifications-button add-simplification-btn"
-                          data-simplification-name="{{ s|fn_name }}" data-simplification-string="{{ s|pretify }}">
+          <div class="panel-heading">Available Simplifications</div>
+          <div class="panel-body">
+            <ul class="simplification-list">
+              {% for s in simplifications %}
+              <li class="simplification-list-item">
+                <div>
+                  <button class="btn btn-success btn-sm add-simplification-btn simplification-btn"
+                          data-simplification-name="{{ s.name }}" data-simplification-string="{{ s.pretty }}">
                   Add <span class="glyphicon glyphicon-plus-sign"></span>
-                </button>
-              </div>
-            </div>
+                  </button>
+                  <div class="simplification-div with-help-popup" data-toggle="popover" title="Help" data-placement="top"
+                      data-content="{{ s.doc }}">
+                    <span>{{ s.pretty }}</span>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
           </div>
-          </li>
-        {% endfor %}
-        </ul>
         </div>
-        </div>
-      </div>
+      </div> <!-- left hand sid - available simplifications -->
 
       <div class="col-md-5">
         <div id="applied-simplifications" class="simplifications-div panel panel-default">
-        <div class="panel-heading">Applied Simplifications</div>
-        <div class="panel-body">
-          <ul id="applied-simplification-list" class="simplification-list" data-max-simplification-id="0">
-
-            <!-- <li class="simplification-list-item" data-applied-simplification-name="deepen" data-applied-simplification-id="1">
-              <div class="row">
-                <div class="col-md-10">
-                  <div id="simplification-fn-qm" class="simplification-div">
-                    <span class="glyphicon glyphicon-move"></span>
-                    <span class="simplification-name">Deepen</span>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <button class="btn btn-success btn-sm simplifications-button remove-simplification-btn" data-applied-simplification-btn-id="1">
-                    Remove <span class="glyphicon glyphicon-minus-sign"></span>
-                  </button>
-                </div>
-              </div>
-            </li> -->
-
-          </ul>
+          <div class="panel-heading">Applied Simplifications</div>
+          <div class="panel-body">
+            <ul id="applied-simplification-list" class="simplification-list" data-max-simplification-id="0">
+              <!-- add simplifications through JS -->
+            </ul>
+          </div>
         </div>
-        </div>
-      </div>
-
-      <!-- <div class="col-md-4">
-        <div id="simplification-doc" class="simplification-div panel panel-default">
-        <div class="panel-heading">Panel Header</div>
-        <div class="panel-body">Panel Content</div>
-        </div>
-      </div> -->
-    </div>
-  </div>
+      </div> <!-- applied simplifications -->
+    </div> <!-- row -->
+  </div> <!-- container with simplifications -->
 
   <div class="container">
 
@@ -139,25 +108,3 @@
 {% block scripts %}
   <script src="{% static 'logic/js/logic.js' %}"></script>
 {% endblock %}
-
-<!-- <div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-     </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div>
-    </div>
-  </div>
-</div> -->
